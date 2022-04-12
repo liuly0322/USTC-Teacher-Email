@@ -81,14 +81,18 @@ async function getTeacherEmail(teacher, terms, interval) {
   // 查找老师教的课程 id
   const course_id = await (async () => {
     for (let i = 0; i < terms; i++) {
-      const course_url = `https://jw.ustc.edu.cn/for-std/lesson-search/semester/${POOL[i]}/search/${student_id}?teacherNameLike=${teacher}`;
-      const course_info = await $.ajax({ url: course_url });
-      if (course_info.data.length) {
-        return course_info.data[0].id;
-      } else {
-        console.log(`第 ${i + 1} 个学期查询失败，正在等待...`);
-        await new Promise((r) => setTimeout(r, interval * 1000));
+      const courses_url = `https://jw.ustc.edu.cn/for-std/lesson-search/semester/${POOL[i]}/search/${student_id}?teacherNameLike=${teacher}`;
+      const courses_info = await $.ajax({ url: courses_url });
+      if (courses_info.data) {
+        const courses_teachers = courses_info.data.map((course) => ({
+          teachers: course.teacherAssignmentList.map((teacher_object) => teacher_object.person.nameZh),
+          id: course.id
+        })).filter((course_teachers) => course_teachers.teachers.includes(teacher))
+        if (courses_teachers)
+          return courses_teachers[0].id;
       }
+      console.log(`第 ${i + 1} 个学期查询失败，正在等待...`);
+      await new Promise((r) => setTimeout(r, interval * 1000));
     }
   })();
 
