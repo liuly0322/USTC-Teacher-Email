@@ -23,7 +23,7 @@ async function getTeacherEmail(teacher, terms=10, interval=3) {
         if (courses_teachers)
           return courses_teachers[0].id;
       }
-      console.log(`第 ${i + 1} 个学期查询失败，正在等待...`);
+      console.log(`第 ${i + 1} 个学期查询失败，正在等待 ${interval} 秒...`);
       await new Promise((r) => setTimeout(r, interval * 1000));
     }
   })();
@@ -35,6 +35,7 @@ async function getTeacherEmail(teacher, terms=10, interval=3) {
   email_res.forEach((object) => {
     if (object[teacher]) {
       alert(object[teacher]);
+      console.log(object[teacher])
     }
   });
 }
