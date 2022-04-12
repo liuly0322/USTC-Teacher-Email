@@ -34,8 +34,8 @@ async function getTeacherEmail(teacher, terms=10, interval=3) {
 
   email_res.forEach((object) => {
     if (object[teacher]) {
+      console.log(object[teacher]);
       alert(object[teacher]);
-      console.log(object[teacher])
     }
   });
 }
