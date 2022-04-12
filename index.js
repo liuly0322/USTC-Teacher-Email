@@ -83,7 +83,7 @@ async function getTeacherEmail(teacher, terms=10, interval=3) {
     for (let i = 0; i < terms; i++) {
       const courses_url = `https://jw.ustc.edu.cn/for-std/lesson-search/semester/${POOL[i]}/search/${student_id}?teacherNameLike=${teacher}`;
       const courses_info = await $.ajax({ url: courses_url });
-      if (courses_info.data) {
+      if (courses_info.data && courses_info.data.length) {
         const courses_teachers = courses_info.data.map((course) => ({
           teachers: course.teacherAssignmentList.map((teacher_object) => teacher_object.person.nameZh),
           id: course.id
