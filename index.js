@@ -1,4 +1,4 @@
-async function getTeacherEmail(teacher, terms, interval) {
+async function getTeacherEmail(teacher, terms=10, interval=3) {
   // 程序配置（不要随意修改，除非你知道你在做什么）
   const POOL = [
     "241",
@@ -108,5 +108,7 @@ async function getTeacherEmail(teacher, terms, interval) {
 }
 
 // 使用示例：
-getTeacherEmail("王xx", 10, 3);
+getTeacher("王xx")
+// 如果你想要更高的可定制性，可以使用下面的完整版本的 api
+// getTeacherEmail("王xx", 10, 3);
 // 依次为老师姓名，查询最大学期数，每次查询间隔（单位秒，为了防止流量太大被封）
