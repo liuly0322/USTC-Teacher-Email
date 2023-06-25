@@ -1,5 +1,11 @@
 # USTC-Teacher-Email
 
+## Note!!!
+
+本仓库不再维护，推荐查看 [USTC-Teacher-Email](https://github.com/txtxj/USTC-Teacher-Email) 项目，内含 greasyfork 脚本。
+
+## 说明
+
 一个能在浏览器端查询教师邮箱的脚本
 
 接口来源 txtxj 的 [USTC-Teacher-Email](https://github.com/txtxj/USTC-Teacher-Email) 项目
